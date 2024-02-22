@@ -1,5 +1,6 @@
 import pandas as pd
 import dash
+import dash_bootstrap_components as dbc
 from dash import Dash, html, Input, Output, dash_table, dcc, callback
 from dash.dash_table.Format import Format, Group
 import plotly.express as px
@@ -19,25 +20,29 @@ categories = ['Rank','Total','RP Spent','Battles','Negotiations','Traded Goods',
 # app = Dash(__name__)
 layout = html.Div([
     html.H1("Player Scores By Category"),
-    html.Label([
-        "Category",
-        dcc.Dropdown(
-            id='dropdown', clearable=False,
-            value='Total', options=[
-                {'label': c, 'value': c}
-                for c in categories
-            ],
-            placeholder="Select a Category",
-            style={'width':'50%'})
-    ]),
-    html.Label([
-        "Sort By",
-        dcc.RadioItems(
-            id='buttons', 
-            value='Rank', options=[
-                {'label': c, 'value': c}
-                for c in ["Rank","Player","Score"]
-            ])
+    html.Div([
+        html.Label([
+            "Category",
+            dcc.Dropdown(
+                id='dropdown', clearable=False,
+                value='Total', options=[
+                    {'label': c, 'value': c}
+                    for c in categories
+                ])
+        ], style={"width":"25%"})
+        
+    ]
+    ),
+    html.Div([
+        html.Label([
+            "Sort By",
+            dcc.RadioItems(
+                id='buttons', 
+                value='Rank', options=[
+                    {'label': c, 'value': c}
+                    for c in ["Rank","Player","Score"]
+                ])
+        ])
     ]),
     dcc.Graph(id='averages_by_cat')
 ])
