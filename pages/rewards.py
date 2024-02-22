@@ -6,6 +6,7 @@ from dash.dash_table.Format import Format, Group
 import plotly.express as px
 import datetime as dt
 
+
 dash.register_page(__name__)
 
 
@@ -25,34 +26,46 @@ rp_reward = diff_df[["RP Spent"]].sort_values("RP Spent",ascending=False).reset_
 orb_reward = diff_df[["Wonder Orbs"]].sort_values("Wonder Orbs",ascending=False).reset_index().head(3)
 activity_reward = diff_df[["Activity Points"]].sort_values("Activity Points",ascending=False).reset_index().head(3)
 
-# layout = html.Div([
-#     html.H1('Rewards'),
-    # dash_table.DataTable(
-    #     id="rp_rewards",
-    #     data=rp_reward.to_dict('records'),
-    #     columns=[{"name": i, "id": i} for i in ["Player","RP Spent"]]
-    # )
-
-# ])
-
 layout = html.Div([
    html.H1("Rewards"),
    dbc.Row([
     dbc.Col(
-        html.Div([
-            html.H4("RP Spent"),
-            dbc.Table.from_dataframe(rp_reward, bordered=True, hover=True)
-        ]),
-            
-        width={"size":6}, 
+        dbc.Card([
+            dbc.CardHeader("RP Spent"),
+            dbc.CardBody([
+                # html.H4("Activity Points", className="card-title"),
+                dbc.Table.from_dataframe(rp_reward, bordered=True, hover=True)
+            ])
+        ],
+        outline=True
+        ),    
+        width="auto", 
     ),
     dbc.Col(
-        html.Div([
-            html.H4("Wonder Orbs"),
-            dbc.Table.from_dataframe(orb_reward, bordered=True, hover=True)
-        ]),
+       dbc.Card([
+            dbc.CardHeader("Wonder POrbs"),
+            dbc.CardBody([
+                # html.H4("Activity Points", className="card-title"),
+                dbc.Table.from_dataframe(orb_reward, bordered=True, hover=True)
+            ])
+        ],
+        outline=True
+        ),
             
-        width={"size":6}, 
+        width="auto", 
+    ),
+    dbc.Col(
+        dbc.Card([
+            dbc.CardHeader("Activity Points"),
+            dbc.CardBody([
+                # html.H4("Activity Points", className="card-title"),
+                dbc.Table.from_dataframe(activity_reward, bordered=True, hover=True)
+            ])
+        ],
+        outline=True
+        ),
+            
+        width="auto", 
     )
 ])
 ])
