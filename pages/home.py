@@ -60,11 +60,14 @@ def update_figure(dropdown="Total",buttons="Rank"):
         sorted_df = df.sort_values(buttons)
     latest_df = sorted_df.loc[sorted_df.Date == sorted_df.Date.max(),['Date','Player',dropdown]]
     avg_value = df.loc[df.Date == df.Date.max(),dropdown].mean()
+    formatted_value = "{:,.2f}".format(avg_value)
     fig = px.bar(
         latest_df, x="Player", y=dropdown,
-        title=f"Player {dropdown} Scores As Of {df.Date.max().strftime('%m/%d/%Y')}"
+        title=f"Player {dropdown} Scores As Of {df.Date.max().strftime('%m/%d/%Y')}",
+        
     )
-    fig.add_hline(y=avg_value,line_dash="dot",annotation_text=f"Average: {avg_value}",annotation_position="bottom left")
+    fig.add_hline(y=avg_value,line_dash="dot",annotation_text=f"<b>Average: {formatted_value}</b>",annotation_position="bottom left")
+    fig.update_traces(marker_color="lightseagreen")
     return fig
 
 # if __name__ == '__main__':
