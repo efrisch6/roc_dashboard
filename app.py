@@ -11,12 +11,24 @@ app = Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.BOOTSTRAP]
 server = app.server
 
 app.layout = html.Div([
-    html.H1('RagnOroCk Player Analytics'),
-    html.Div([
-        html.Div(
-            dcc.Link(f"{page['name']} - {page['path']}", href=page["relative_path"])
-        ) for page in dash.page_registry.values()
-    ]),
+    dbc.NavbarSimple(
+        children=[
+            dbc.DropdownMenu(
+                children=[
+                    dbc.DropdownMenuItem(f"{page['name']}", href=page["relative_path"]
+                                        ) for page in dash.page_registry.values()
+                ],
+                nav=True,
+                in_navbar=True,
+                label="Menu",
+            ),
+        ],
+        brand="RagnOroCK Player Analytics",
+        brand_href="/",
+        color="secondary",
+        dark=True
+        
+    ),
     dash.page_container
 ])
 
