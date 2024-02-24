@@ -54,8 +54,8 @@ table_columns = [{'name':'Player', 'id':'Player', 'type':'text'},
 layout = html.Div([
     dbc.Row([
         dbc.Col(html.Img(src=image_path, style={'height': '100%', 'width': '100%'}),
-            width="3",
-            style={"height":"25%"}
+            # width="3",
+            style={"height":"35%"}
             ),
         dbc.Col(
             dcc.Markdown("""Player scores are calculated using the formula below:  
@@ -67,7 +67,7 @@ layout = html.Div([
             **Activity Points gained:** x0.1  
             **Traded Goods:** x0.002
             """),
-            width=3
+            # width=3
             )
         ],   
         style={'margin': 25}),
