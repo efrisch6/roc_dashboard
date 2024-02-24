@@ -68,4 +68,5 @@ layout = html.Div([
         width="auto", 
     )
 ])
-])
+],
+style={'marginBottom': 50, 'marginTop': 25, 'marginLeft': 25, 'marginRight': 25})
