@@ -27,7 +27,7 @@ orb_reward = diff_df[["Wonder Orbs"]].sort_values("Wonder Orbs",ascending=False)
 activity_reward = diff_df[["Activity Points"]].sort_values("Activity Points",ascending=False).reset_index().head(3)
 
 layout = html.Div([
-   html.H1("Rewards"),
+   html.H1(f"Rewards for {df.Date.max().strftime('%m/%d/%Y')}"),
    dbc.Row([
     dbc.Col(
         dbc.Card([
