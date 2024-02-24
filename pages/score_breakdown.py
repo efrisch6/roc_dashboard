@@ -8,7 +8,10 @@ import plotly.express as px
 import datetime as dt
 
 
-dash.register_page(__name__)
+dash.register_page(__name__,
+            meta_tags=[{'name': 'viewport',
+                            'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5,'}]
+                    )
 
 image_path = 'assets/ROC_score_breakdown.jpg'
 df = pd.read_csv("assets/ROC_player_scores.csv", thousands=',')
@@ -55,7 +58,8 @@ layout = html.Div([
     dbc.Row([
         dbc.Col(html.Img(src=image_path, style={'height': '100%', 'width': '100%'}),
             # width="3",
-            style={"height":"35%"}
+            style={"height":"35%"},
+            xs=5, sm=5, md=3, lg=3, xl=3
             ),
         dbc.Col(
             dcc.Markdown("""Player scores are calculated using the formula below:  
@@ -68,6 +72,7 @@ layout = html.Div([
             **Traded Goods:** x0.002
             """),
             # width=3
+            xs=7, sm=7, md=3, lg=3, xl=3
             )
         ],   
         style={'margin': 25}),

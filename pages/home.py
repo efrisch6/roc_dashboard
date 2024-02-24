@@ -6,7 +6,10 @@ from dash.dash_table.Format import Format, Group
 import plotly.express as px
 import datetime as dt
 
-dash.register_page(__name__, path="/")
+dash.register_page(__name__, path="/",
+            meta_tags=[{'name': 'viewport',
+                            'content': 'width=device-width, initial-scale=1.0, maximum-scale=1.2, minimum-scale=0.5,'}]
+                    )
 
 image_path = 'assets/ROC_RagnOroCk_logo.jpg'
 df = pd.read_csv("assets/ROC_player_scores.csv", thousands=',')
@@ -24,15 +27,18 @@ layout = html.Div([
     dbc.Row([
         dbc.Col(html.Img(src=image_path, style={'height': '100%', 'width': '100%'}),
             # width={"size":3, "offset": 3},
-            style={"height":"25%"}
+            style={"height":"25%"},
+            xs=5, sm=5, md=3, lg=3, xl=3
             ),
         dbc.Col(
             html.P("""We are a Rise of Cultures alliance on AM1 server. We are a group of friendly players with 
     a competitive side. We love to help each other out and share the knowledge we've learned along the way.
     """),
             # width=3
+            xs=7, sm=7, md=3, lg=3, xl=3
             )
-        ],   
+        ],  
+        justify="center", 
         style={'margin': 25})
     
 ],
