@@ -23,14 +23,14 @@ layout = html.Div([
     html.H1("Welcome to the RagnOroCk Dashboard", style={"textAlign": "center"}),
     dbc.Row([
         dbc.Col(html.Img(src=image_path, style={'height': '100%', 'width': '100%'}),
-            width={"size":3, "offset": 3},
+            # width={"size":3, "offset": 3},
             style={"height":"25%"}
             ),
         dbc.Col(
             html.P("""We are a Rise of Cultures alliance on AM1 server. We are a group of friendly players with 
     a competitive side. We love to help each other out and share the knowledge we've learned along the way.
     """),
-            width=3
+            # width=3
             )
         ],   
         style={'margin': 25})
