@@ -45,7 +45,8 @@ layout = html.Div([
         style_header=dict(backgroundColor="paleturquoise"),
         style_data=dict(backgroundColor="lavender")
     ), 
-])
+],
+style={'marginBottom': 50, 'marginTop': 25, 'marginLeft': 25, 'marginRight': 25})
 
 @callback(
     Output('table_out', 'children'), 
