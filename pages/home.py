@@ -15,10 +15,10 @@ image_path = 'assets/ROC_RagnOroCk_logo.jpg'
 df = pd.read_csv("assets/ROC_player_scores.csv", thousands=',')
 df.date = pd.to_datetime(df['date']).dt.date
 
-col_names = ['Date','Player','Rank','Total','RP Spent','Battles','Negotiations','Traded Goods','Wonder Orbs','Activity Points','Events']
+col_names = ['Date','Player','Rank','Total','RP Spent','Battles','Negotiations','Traded Goods','Wonder Orbs','Activity Points','Events','Compass Donations','TH Encounters']
 df.columns = col_names
 
-categories = ['Rank','Total','RP Spent','Battles','Negotiations','Traded Goods','Wonder Orbs','Activity Points','Events']
+categories = ['Rank','Total','RP Spent','Battles','Negotiations','Traded Goods','Wonder Orbs','Activity Points','Events','Compass Donations','TH Encounters']
  
 
 # app = Dash(__name__)
