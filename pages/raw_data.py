@@ -11,10 +11,10 @@ dash.register_page(__name__)
 df = pd.read_csv("assets/ROC_player_scores.csv", thousands=',')
 df.date = pd.to_datetime(df['date']).dt.date
 
-col_names = ['Date','Player','Rank','Total','RP Spent','Battles','Negotiations','Traded Goods','Wonder Orbs','Activity Points','Events']
+col_names = ['Date','Player','Rank','Total','RP Spent','Battles','Negotiations','Traded Goods','Wonder Orbs','Activity Points','Events','Compass Donations','TH Encounters']
 df.columns = col_names
 
-categories = ['Rank','Total','RP Spent','Battles','Negotiations','Traded Goods','Wonder Orbs','Activity Points','Events']
+categories = ['Rank','Total','RP Spent','Battles','Negotiations','Traded Goods','Wonder Orbs','Activity Points','Events','Compass Donations','TH Encounters']
  
 table_columns = [{'name':'Date', 'id':'Date', 'type':'datetime'},
                  {'name':'Player', 'id':'Player', 'type':'text'},
@@ -26,7 +26,10 @@ table_columns = [{'name':'Date', 'id':'Date', 'type':'datetime'},
                  {'name':'Traded Goods', 'id':'Traded Goods', 'type':'numeric', 'format':Format().group(True)},
                  {'name':'Wonder Orbs', 'id':'Wonder Orbs', 'type':'numeric', 'format':Format().group(True)},
                  {'name':'Activity Points', 'id':'Activity Points', 'type':'numeric', 'format':Format().group(True)},
-                 {'name':'Events', 'id':'Events', 'type':'numeric', 'format':Format().group(True)}]
+                 {'name':'Events', 'id':'Events', 'type':'numeric', 'format':Format().group(True)},
+                 {'name':'Compass Donations', 'id':'Compass Donations', 'type':'numeric', 'format':Format().group(True)},
+                 {'name':'TH Encounters', 'id':'TH Encounters', 'type':'numeric', 'format':Format().group(True)}
+                 ]
 
 
 # app = Dash(__name__)

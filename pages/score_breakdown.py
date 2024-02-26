@@ -19,10 +19,12 @@ df.date = pd.to_datetime(df['date']).dt.date
 
 df = df.loc[df.date == df.date.max()]
 
+df = df.rename(columns=lambda x: x.strip())
+
 df['calc_rp'] = df['rp_spent'] * 0.25
 df['calc_battles'] = df['battles'] * 2
 df['calc_neg'] = df['negotiations'] * 2
-df['calc_trade'] = df[' traded_goods '] * 0.002
+df['calc_trade'] = df['traded_goods'] * 0.002
 df['calc_orbs'] = df['wonder_orbs'] * 5
 df['calc_activity'] = df['activity_points'] * 0.1
 df['calc_event'] = df['events'] * 1
