@@ -43,7 +43,7 @@ layout = html.Div([
     ),
     dbc.Col(
        dbc.Card([
-            dbc.CardHeader("Wonder POrbs"),
+            dbc.CardHeader("Wonder Orbs"),
             dbc.CardBody([
                 # html.H4("Activity Points", className="card-title"),
                 dbc.Table.from_dataframe(orb_reward, bordered=True, hover=True)
