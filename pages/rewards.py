@@ -20,11 +20,17 @@ max_df = df.loc[df.Date == df.Date.max()].set_index('Player').drop("Date",axis=1
 remaining = df.loc[df.Date != df.Date.max()]
 second_df = remaining.loc[remaining.Date == remaining.Date.max()].set_index('Player').drop("Date",axis=1)
 
+
 diff_df = max_df - second_df
 
-rp_reward = diff_df[["RP Spent"]].sort_values("RP Spent",ascending=False).reset_index().head(3)
-orb_reward = diff_df[["Wonder Orbs"]].sort_values("Wonder Orbs",ascending=False).reset_index().head(3)
-activity_reward = diff_df[["Activity Points"]].sort_values("Activity Points",ascending=False).reset_index().head(3)
+def reward_df(score):
+     reward = diff_df[[score]].loc[diff_df[score].isin(diff_df[[score]].sort_values(score,ascending=False)[score].unique()[:3])].sort_values(score,ascending=False).reset_index()
+     return reward
+                                        
+
+rp_reward = reward_df("RP Spent")
+orb_reward = reward_df("Wonder Orbs")
+activity_reward = reward_df("Activity Points")
 
 layout = html.Div([
    html.H1(f"Rewards for {df.Date.max().strftime('%m/%d/%Y')}"),
