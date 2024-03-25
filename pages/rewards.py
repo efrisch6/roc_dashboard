@@ -16,10 +16,11 @@ df.date = pd.to_datetime(df['date']).dt.date
 col_names = ['Date','Player','Rank','Total','RP Spent','Battles','Negotiations','Traded Goods','Wonder Orbs','Activity Points','Events','Compass Donations','TH Encounters']
 df.columns = col_names
 
-max_df = df.loc[df.Date == df.Date.max()].set_index('Player').drop("Date",axis=1)
-remaining = df.loc[df.Date != df.Date.max()]
-second_df = remaining.loc[remaining.Date == remaining.Date.max()].set_index('Player').drop("Date",axis=1)
+max_date = df.Date.max()
 
+max_df = df.loc[df.Date == max_date].set_index('Player').drop("Date",axis=1)
+remaining = df.loc[df.Date != max_date]
+second_df = remaining.loc[remaining.Date == remaining.Date.max()].set_index('Player').drop("Date",axis=1)
 
 diff_df = max_df - second_df
 
@@ -32,8 +33,17 @@ rp_reward = reward_df("RP Spent")
 orb_reward = reward_df("Wonder Orbs")
 activity_reward = reward_df("Activity Points")
 
+def results(df,score):
+    # text_results = f"{score}:\n" 
+    text_results = [f"{score}:",html.Br()]
+    for i,row in df.iterrows():
+        # text_results = text_results + f"{i+1} - {row['Player']} - {int(row[1])} \n" 
+        text_results.append(f"{i+1} - {row['Player']} - {int(row[1])} \n")
+        text_results.append(html.Br())
+    return text_results
+
 layout = html.Div([
-   html.H1(f"Rewards for {df.Date.max().strftime('%m/%d/%Y')}"),
+   html.H1(f"Rewards for {max_date.strftime('%m/%d/%Y')}"),
    dbc.Row([
     dbc.Col(
         dbc.Card([
@@ -73,6 +83,24 @@ layout = html.Div([
             
         width="auto", 
     )
-])
+]),
+dbc.Row([html.Br()]),
+dbc.Row([
+     html.P([
+        f"""For the week of {max_date.strftime('%m/%d/%Y')}, the results are:""",
+        html.Br(),
+        html.Br()] +
+        results(orb_reward,"Orbs") + [
+        html.Br()] +
+        results(activity_reward,"Activity Points") + [
+        html.Br()] +
+        results(rp_reward,"RP Spent")
+       
+        )])
+          
+
 ],
 style={'marginBottom': 50, 'marginTop': 25, 'marginLeft': 25, 'marginRight': 25})
+
+f"""For the week of {max_date.strftime('%m/%d/%Y')}, the results are:\n"""
+results(orb_reward,"Orbs")
