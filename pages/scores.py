@@ -20,6 +20,7 @@ categories = ['Rank','Total','RP Spent','Battles','Negotiations','Traded Goods',
 # app = Dash(__name__)
 layout = html.Div([
     html.H1("Player Scores By Category"),
+    html.P('Select a score category.  The results can be sorted by player ranks, player names, or player scores.  The dotted line represents the average score for the alliance.'),
     html.Div([
         html.Label([
             "Category",

@@ -44,6 +44,7 @@ def results(df,score):
 
 layout = html.Div([
    html.H1(f"Rewards for {max_date.strftime('%m/%d/%Y')}"),
+   html.P('Below are the winners of the RagnOroCk Player Profile Rewards for the current week.  There is a section of text for easy copying for announcements in Discord.'),
    dbc.Row([
     dbc.Col(
         dbc.Card([

@@ -40,6 +40,7 @@ table_columns = [
 # app = Dash(__name__)
 layout = html.Div([
     html.H1('Comparison View'),
+    html.P('Enter in a start date and an end date.  The table below will calculate the difference between scores from the selected dates.  The default is the first week for the start date and the most recent week for the end date.'),
     html.P(id='table'),
     html.Label([
             "Start Date",
@@ -66,6 +67,7 @@ layout = html.Div([
         data=df.to_dict('records'),
         editable=True,
         sort_action="native",
+        filter_action="native",
         style_cell=dict(textAlign='left'),
         style_header=dict(backgroundColor="paleturquoise"),
         style_data=dict(backgroundColor="lavender")
