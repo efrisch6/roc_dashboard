@@ -57,6 +57,7 @@ table_columns = [{'name':'Player', 'id':'Player', 'type':'text'},
 
 
 layout = html.Div([
+    html.P("The table contains the percentage that each profile score category makes up of a player's total score."),
     dbc.Row([
         dbc.Col(html.Img(src=image_path, style={'height': '100%', 'width': '100%'}),
             # width="3",
