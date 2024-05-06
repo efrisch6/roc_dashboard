@@ -26,6 +26,7 @@ diff_df = max_df - second_df
 
 def reward_df(score):
      reward = diff_df[[score]].loc[diff_df[score].isin(diff_df[[score]].sort_values(score,ascending=False)[score].unique()[:3])].sort_values(score,ascending=False).reset_index()
+     reward['Place'] = reward[[score]].rank(method='min', ascending=False)
      return reward
                                         
 
@@ -38,7 +39,7 @@ def results(df,score):
     text_results = [f"{score}:",html.Br()]
     for i,row in df.iterrows():
         # text_results = text_results + f"{i+1} - {row['Player']} - {int(row[1])} \n" 
-        text_results.append(f"{i+1} - {row['Player']} - {int(row[1])} \n")
+        text_results.append(f"{int(row['Place'])} - {row['Player']} - {int(row[1])} \n")
         text_results.append(html.Br())
     return text_results
 
