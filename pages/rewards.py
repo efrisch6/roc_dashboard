@@ -26,7 +26,7 @@ diff_df = max_df - second_df
 
 def reward_df(score):
      reward = diff_df[[score]].loc[diff_df[score].isin(diff_df[[score]].sort_values(score,ascending=False)[score].unique()[:5])].sort_values(score,ascending=False).reset_index()
-     reward['Place'] = reward[[score]].rank(method='min', ascending=False)
+     reward['Place'] = reward[[score]].rank(method='dense', ascending=False)
      return reward
                                         
 
