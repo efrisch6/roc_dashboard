@@ -11,7 +11,7 @@ dash.register_page(__name__)
 
 
 df = pd.read_csv("assets/ROC_player_scores.csv", thousands=',')
-df.date = pd.to_datetime(df['date']).dt.date
+df.date = pd.to_datetime(df['date'], format="%m/%d/%y").dt.date
 
 col_names = ['Date','Player','Rank','Total','RP Spent','Battles','Negotiations','Traded Goods','Wonder Orbs','Activity Points','Events','Compass Donations','TH Encounters']
 df.columns = col_names
