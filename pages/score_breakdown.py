@@ -15,7 +15,7 @@ dash.register_page(__name__,
 
 image_path = 'assets/ROC_score_breakdown.jpg'
 df = pd.read_csv("assets/ROC_player_scores.csv", thousands=',')
-df.date = pd.to_datetime(df['date']).dt.date
+df.date = pd.to_datetime(df['date'], format="%m/%d/%y").dt.date
 
 df = df.loc[df.date == df.date.max()]
 
