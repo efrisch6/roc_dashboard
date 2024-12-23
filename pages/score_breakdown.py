@@ -90,6 +90,9 @@ layout = html.Div([
 
             columns=table_columns,
             data=percent_df.to_dict('records'),
+            editable=True,
+            sort_action="native",
+            filter_action="native",
             style_table={'overflowX': 'auto'},
             style_cell={
                 'textAlign': 'left',
