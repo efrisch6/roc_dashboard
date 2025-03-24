@@ -16,9 +16,12 @@ df.date = pd.to_datetime(df['date']).dt.date
 col_names = ['Date','Player','Rank','Total','RP Spent','Battles','Negotiations','Traded Goods','Wonder Orbs','Activity Points','Events','Compass Donations','TH Encounters']
 df.columns = col_names
 
-df.Date = pd.to_datetime(df.Date)
-avg_diff = df.set_index('Date').last('50D').groupby('Player').apply(lambda x: x.diff().mean() * -1).dropna().drop(['Compass Donations','TH Encounters'],axis=1)
-avg_th = df.set_index('Date').last('50D').groupby('Player')[['Compass Donations','TH Encounters']].mean().dropna()
+max_date = df.Date.max()
+seven_weeks_ago = max_date - dt.timedelta(weeks=7)
+
+# df.Date = pd.to_datetime(df.Date)
+avg_diff = df.loc[df.Date >= seven_weeks_ago].set_index('Date').groupby('Player').apply(lambda x: x.diff().mean() * -1).dropna().drop(['Compass Donations','TH Encounters'],axis=1)
+avg_th = df.loc[df.Date >= seven_weeks_ago].set_index('Date').groupby('Player')[['Compass Donations','TH Encounters']].mean().dropna()
 
 final_df = pd.concat([avg_diff,avg_th],axis = 1).round(2)
 final_df = final_df.reset_index()
